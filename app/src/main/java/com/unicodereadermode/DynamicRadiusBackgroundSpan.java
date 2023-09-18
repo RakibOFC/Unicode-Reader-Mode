@@ -86,7 +86,7 @@ public class DynamicRadiusBackgroundSpan extends ReplacementSpan {
 
         // Draw the circular background
         paint.setColor(backgroundColor);
-        paint.setAlpha(60);
+        paint.setAlpha(80);
         paint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(x + textWidth / 2f, (top + bottom) / 2f, radius, paint);
 

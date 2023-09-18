@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.text_view);
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
-        int backgroundColor = 0xFF54A5E6;
-        String wordSpace = "  ";
+        String wordSpace = "\u00A0\u00A0";
+        String ayahSpace = "\u00A0\u00A0\u00A0";
 
         for (int i = 0; i < 8; i++) {
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // Append the Ayah number to the builder
-            builder.append(getTemp(i)).append("       "); // Append two spaces
+            builder.append(getTemp(i)).append(ayahSpace);
         }
 
 
