@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
         int backgroundColor = 0xFF54A5E6;
+        String wordSpace = "  ";
 
         for (int i = 0; i < 8; i++) {
 
@@ -60,13 +61,14 @@ public class MainActivity extends AppCompatActivity {
                 };
 
                 // Append the word and set the ClickableSpan for that word
-                builder.append(word).append(" ");
-                builder.setSpan(clickableSpan, builder.length() - word.length() - 1, builder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                builder.append(word).append(wordSpace); // Append a single space
+                builder.setSpan(clickableSpan, builder.length() - word.length() - wordSpace.length(), builder.length() - wordSpace.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
 
             // Append the Ayah number to the builder
-            builder.append(getTemp(i)).append(" ");
+            builder.append(getTemp(i)).append("       "); // Append two spaces
         }
+
 
         // Set the spannable text to the TextView
         textView.setText(builder, TextView.BufferType.SPANNABLE);
@@ -98,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
         String ayahNo = String.valueOf(ayahNoInt + 99);
         SpannableString spannableString = new SpannableString(ayahNo);
 
-        int backgroundColor = getColor(R.color.primary); // Replace with your desired background color
-        int textColor = Color.BLACK; // Replace with your desired text color
+        int backgroundColor = getColor(R.color.primary);
+        int textColor = Color.BLACK;
         int padding = 8;
 
         // spannableString.setSpan(new RadiusBackgroundSpan(backgroundColor, radius, textColor), 0, ayahNo.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

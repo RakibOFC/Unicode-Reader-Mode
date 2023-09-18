@@ -12,7 +12,7 @@
         android:id="@+id/text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/noorehuda_regular"
+        android:fontFamily="@font/uthman_taha_regular"
         android:lineSpacingExtra="10dp"
         android:textAlignment="center"
         android:textSize="30sp"
