@@ -26,10 +26,11 @@ public class DynamicRadiusBackgroundSpan extends ReplacementSpan {
 
         // Add padding to both sides; The radius is at least 20
         // return Math.max(2 * radius, 2) + 2 * padding;
-        return Math.max(2 * radius, 2);
+        return Math.max(2 * radius, 20);
     }
 
-    /*@Override
+    /**
+    @Override
     public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
         int textWidth = Math.round(paint.measureText(text, start, end));
         int radius = (textWidth + 2 * padding) / 2;
@@ -53,7 +54,8 @@ public class DynamicRadiusBackgroundSpan extends ReplacementSpan {
         canvas.drawText(text, start, end, left, textBaseline, paint);
     }*/
 
-    /*@Override
+    /**
+    @Override
     public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
 
         int textWidth = Math.round(paint.measureText(text, start, end));
@@ -77,11 +79,13 @@ public class DynamicRadiusBackgroundSpan extends ReplacementSpan {
         canvas.drawText(text, start, end, x, y, paint);
     }*/
 
+    /**
+     * Circular background for ayah
+     * */
     @Override
     public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
 
         int textWidth = Math.round(paint.measureText(text, start, end));
-        int padding = 10; // Adjust padding as needed
         int radius = (textWidth + 2 * padding) / 2;
 
         // Draw the circular background

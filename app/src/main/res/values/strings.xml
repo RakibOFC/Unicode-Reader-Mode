@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Unicode Reader Mode</string>
+    <string name="def_al_fatiha">আল-ফাতিহা</string>
+    <string name="def_surah_mean">সূচনা</string>
 </resources>
