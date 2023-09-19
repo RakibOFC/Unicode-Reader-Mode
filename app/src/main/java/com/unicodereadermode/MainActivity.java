@@ -52,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
         spanSurahName.setSpan(new RelativeSizeSpan(0.9f), 0, surahName.length(), Spanned.SPAN_INTERMEDIATE);
         spanSurahName.setSpan(new ForegroundColorSpan(getColor(R.color.primary_2)), 0, surahName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        // spanSurahName.setSpan(new TypefaceSpan(getResources().getFont(R.font.siliguri)), 0, surahName.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spanSurahNameMean.setSpan(new RelativeSizeSpan(0.7f), 0, surahNameMean.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        // spanSurahNameMean.setSpan(new TypefaceSpan(ResourcesCompat.getFont(this, R.font.siliguri)), 0, surahNameMean.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         builder.append(getTemp(surahNo)).append("\n")
                 .append(spanSurahName).append("\n")
                 .append(spanSurahNameMean).append("\n");
+
+        builder.setSpan(new TypefaceSpan(getResources().getFont(R.font.siliguri)), 0, surahName.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         for (int i = 0; i < 18; i++) {
 
@@ -96,30 +96,9 @@ public class MainActivity extends AppCompatActivity {
             builder.append(getTemp(i)).append(ayahSpace);
         }
 
-
         // Set the spannable text to the TextView
         textView.setText(builder, TextView.BufferType.SPANNABLE);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-
-        /*String[] strings = {"بِسۡمِ اللهِ الرَّحۡمٰنِ الرَّحِيۡمِ", "اَلۡحَمۡدُ لِلّٰهِ رَبِّ الۡعٰلَمِيۡنَۙ", "الرَّحۡمٰنِ الرَّحِيۡمِ"};
-        int[] resDrawables = {R.drawable.baseline_back_hand_24, R.drawable.baseline_check_circle_24, R.drawable.baseline_check_circle_24};
-
-        SpannableStringBuilder sStringBuilder = new SpannableStringBuilder();
-
-        for (int i = 0; i < strings.length; i++) {
-
-            Drawable drawable = ResourcesCompat.getDrawable(getResources(), resDrawables[i], null);
-            drawable.setBounds(0, 0, 40, 40);
-
-            sStringBuilder.append(" ");
-            int start = sStringBuilder.length();
-            sStringBuilder.append(" ");
-            int end = sStringBuilder.length();
-
-            sStringBuilder.setSpan(new ImageSpan(drawable), start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-            sStringBuilder.append(strings[i]);
-        }
-        textView.setText(sStringBuilder);*/
     }
 
     private SpannableString getTemp(int number) {
