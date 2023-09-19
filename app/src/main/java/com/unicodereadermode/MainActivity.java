@@ -8,6 +8,8 @@ import androidx.core.widget.NestedScrollView;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -20,6 +22,7 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,13 +31,19 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    private NestedScrollView nestedScrollView;
+    private AutoScrollHelper autoScrollHelper;
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    private boolean isScrolling = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         TextView textView = findViewById(R.id.text_view);
-        NestedScrollView nestedScrollView = findViewById(R.id.nested_scroll_view);
+        Button btn = findViewById(R.id.btn);
+        nestedScrollView = findViewById(R.id.nested_scroll_view);
 
         // AutoScrollHelper scrollHelper = AutoScrollHelper.create(nestedScrollView);
 
@@ -58,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 .append(spanSurahName).append("\n")
                 .append(spanSurahNameMean).append("\n");
 
-        builder.setSpan(new TypefaceSpan(getResources().getFont(R.font.siliguri)), 0, surahName.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // builder.setSpan(new TypefaceSpan(getResources().getFont(R.font.siliguri)), 0, surahName.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         for (int i = 0; i < 18; i++) {
 
@@ -99,7 +108,45 @@ public class MainActivity extends AppCompatActivity {
         // Set the spannable text to the TextView
         textView.setText(builder, TextView.BufferType.SPANNABLE);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+
+        autoScrollHelper = new AutoScrollHelper(nestedScrollView) {
+            @Override
+            public void scrollTargetBy(int deltaX, int deltaY) {
+                nestedScrollView.scrollBy(deltaX, deltaY);
+            }
+
+            @Override
+            public boolean canTargetScrollHorizontally(int direction) {
+                return false;
+            }
+
+            @Override
+            public boolean canTargetScrollVertically(int direction) {
+                return true;
+            }
+        };
+
+        btn.setOnClickListener(v -> {
+            startAutoScroll(100);
+        });
     }
+
+    private void startAutoScroll(int intervalMillis) {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                autoScrollHelper.setEnabled(true);
+                autoScrollHelper.scrollTargetBy(0, 1);
+                handler.postDelayed(this, intervalMillis);
+            }
+        }, intervalMillis);
+    }
+
+    private void stopAutoScroll() {
+        autoScrollHelper.setEnabled(false); // Disable auto-scrolling
+        handler.removeCallbacksAndMessages(null); // Remove pending callbacks
+    }
+
 
     private SpannableString getTemp(int number) {
 
