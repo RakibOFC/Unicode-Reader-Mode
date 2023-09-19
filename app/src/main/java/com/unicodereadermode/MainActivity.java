@@ -112,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
         autoScrollHelper = new AutoScrollHelper(nestedScrollView) {
             @Override
             public void scrollTargetBy(int deltaX, int deltaY) {
-                nestedScrollView.scrollBy(deltaX, deltaY);
+                // nestedScrollView.scrollBy(deltaX, deltaY);
+                nestedScrollView.smoothScrollBy(deltaX, deltaY);
             }
 
             @Override
