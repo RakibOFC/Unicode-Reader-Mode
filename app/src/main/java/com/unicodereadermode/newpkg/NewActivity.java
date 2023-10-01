@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
+import android.graphics.text.LineBreaker;
+import android.os.Build;
+import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -36,22 +39,16 @@ public class NewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new);
 
         TextView paragraphTextView = findViewById(R.id.text_view);
-        Button button = findViewById(R.id.button);
+        // Button button = findViewById(R.id.button);
 
         // Start processing the text in the background
-        TextProcessingHelper.processTextInBackground(stringsArr, new TextProcessingHelper.Callback() {
-            @Override
-            public void onTextProcessed(SpannableStringBuilder spannableStringBuilder) {
+        paragraphTextView.setMovementMethod(LinkMovementMethod.getInstance());
+        TextProcessingHelper.processTextInBackground(stringsArr, paragraphTextView::setText);
 
-                paragraphTextView.setText(spannableStringBuilder);
-                paragraphTextView.setMovementMethod(LinkMovementMethod.getInstance());
-            }
-        });
+        /*button.setOnClickListener(v -> {
 
-        button.setOnClickListener(v -> {
-
-            Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
-        });
+            Log.e("Info", "clicked...");
+        });*/
 
         /*// Create a SpannableStringBuilder to build the paragraph
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
