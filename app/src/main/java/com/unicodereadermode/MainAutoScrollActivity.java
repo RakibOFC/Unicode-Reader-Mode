@@ -2,7 +2,6 @@ package com.unicodereadermode;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.AutoScrollHelper;
 import androidx.core.widget.NestedScrollView;
 
@@ -19,7 +18,6 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainAutoScrollActivity extends AppCompatActivity {
 
     private NestedScrollView nestedScrollView;
     private AutoScrollHelper autoScrollHelper;
@@ -52,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         int surahNo = 1;
         String surahName = getString(R.string.def_al_fatiha);
         String surahNameMean = getString(R.string.def_surah_mean);
-        String wordSpace = "\u00A0\u00A0";
-        String ayahSpace = "\u00A0\u00A0\u00A0";
+        String wordSpace = "    ";
+        String ayahSpace = "        ";
         String[] stringsArr = {"بِسۡمِ", "اللهِ", "الرَّحۡمٰنِ", "الرَّحِيۡمِ", "اَلۡحَمۡدُ", "لِلّٰهِ", "لِلّٰهِ", "رَبِّ", "الۡعٰلَمِيۡنَۙ", "الرَّحۡمٰنِ", "الرَّحِيۡمِ"};
 
         SpannableString spanSurahName = new SpannableString(surahName);
@@ -128,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         btn.setOnClickListener(v -> {
-            startAutoScroll(100);
+            startAutoScroll(1);
         });
     }
 

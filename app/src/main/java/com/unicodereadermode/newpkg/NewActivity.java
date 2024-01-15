@@ -1,32 +1,11 @@
 package com.unicodereadermode.newpkg;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
-import android.graphics.text.LineBreaker;
-import android.os.Build;
-import android.text.Layout;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.util.Log;
-import android.view.View;
-import android.webkit.ConsoleMessage;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.TextView;
 import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.unicodereadermode.MainActivity;
 import com.unicodereadermode.R;
 
 public class NewActivity extends AppCompatActivity {
